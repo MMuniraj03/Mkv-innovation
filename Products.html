@@ -1,88 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Select Product - MKV Innovation</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Select Product | MKV Innovation</title>
   <style>
-    body { font-family: Arial, sans-serif; padding:15px; }
-    .card { border:1px solid #ddd; padding:15px; border-radius:10px; margin-bottom:15px; }
-    img { width:100%; max-width:300px; border-radius:10px; }
-    select, input { width:100%; padding:10px; margin:8px 0; }
-    .btn { background:#0a7cff; color:#fff; padding:12px; border:none; border-radius:8px; width:100%; font-size:16px; }
-    .popup {
-      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
-      background:rgba(0,0,0,0.6); justify-content:center; align-items:center;
-    }
-    .popup-content {
-      background:#fff; padding:20px; border-radius:10px; width:90%; max-width:400px; position:relative;
-    }
-    .close { position:absolute; right:10px; top:10px; font-size:20px; cursor:pointer; }
+    body { margin:0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#f4f7fb; }
+    header { background:#111827; color:#fff; padding:14px 16px; font-weight:700; }
+    .wrap { padding:16px; max-width:900px; margin:auto; }
+    .card { background:#fff; border-radius:14px; box-shadow:0 6px 16px rgba(0,0,0,.08); padding:14px; margin-bottom:14px; }
+    .card img { width:100%; border-radius:12px; height:160px; object-fit:cover; }
+    .row { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    label { font-size:12px; color:#555; }
+    select, input { width:100%; padding:12px; border-radius:10px; border:1px solid #e5e7eb; }
+    .btn { background:#0a7cff; color:#fff; border:none; border-radius:12px; padding:14px; font-weight:700; width:100%; margin-top:10px; }
+    .popup { display:none; position:fixed; inset:0; background:rgba(0,0,0,.5); align-items:center; justify-content:center; }
+    .popup-card { background:#fff; border-radius:14px; width:92%; max-width:420px; padding:16px; position:relative; }
+    .close { position:absolute; right:10px; top:8px; font-size:20px; }
+    .summary { background:#f1f5ff; padding:12px; border-radius:10px; margin:10px 0; white-space:pre-line; }
   </style>
 </head>
 <body>
-
-<h2>Select Your Product</h2>
-
-<div class="card">
-  <img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0">
-  <label>Product Type</label>
-  <select id="type">
-    <option>Round (O-Shape)</option>
-    <option>Elongated (Oval / V-Shape)</option>
-    <option>D-Shape</option>
-    <option>Square (Rectangular)</option>
-    <option>Other Special Shapes</option>
-  </select>
-
-  <label>Colour</label>
-  <select id="color">
-    <option>White</option>
-    <option>Black</option>
-    <option>Blue</option>
-    <option>Pink</option>
-    <option>Silver</option>
-    <option>Golden</option>
-  </select>
-
-  <label>Quantity</label>
-  <input type="number" id="qty" value="1" min="1" />
-
-  <button class="btn" onclick="showPopup()">Continue</button>
-</div>
-
-<div class="popup" id="popup">
-  <div class="popup-content">
-    <span class="close" onclick="closePopup()">×</span>
-    <h3>Confirm Your Selection</h3>
-    <p id="summary"></p>
-    <button class="btn" onclick="confirmOrder()">Confirm</button>
+  <header>MKV Innovation – Select Product</header>
+  <div class="wrap">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0?q=80&w=1200" />
+      <div class="row">
+        <div>
+          <label>Product Type</label>
+          <select id="type">
+            <option>Round (O-Shape)</option>
+            <option>Elongated (Oval / V-Shape)</option>
+            <option>D-Shape</option>
+            <option>Square (Rectangular)</option>
+            <option>Other Special Shapes</option>
+          </select>
+        </div>
+        <div>
+          <label>Colour</label>
+          <select id="color">
+            <option>White</option><option>Black</option><option>Blue</option>
+            <option>Pink</option><option>Silver</option><option>Golden</option>
+          </select>
+        </div>
+      </div>
+      <label>Quantity</label>
+      <input type="number" id="qty" min="1" value="1" />
+      <button class="btn" onclick="showPopup()">Continue</button>
+    </div>
   </div>
-</div>
 
-<script>
-  function showPopup() {
-    const type = document.getElementById("type").value;
-    const color = document.getElementById("color").value;
-    const qty = document.getElementById("qty").value;
-    document.getElementById("summary").innerText =
-      `Product: ${type}\nColour: ${color}\nQuantity: ${qty}`;
-    document.getElementById("popup").style.display = "flex";
-  }
+  <div class="popup" id="popup">
+    <div class="popup-card">
+      <div class="close" onclick="closePopup()">✕</div>
+      <h3>Review Your Selection</h3>
+      <div class="summary" id="summary"></div>
+      <button class="btn" onclick="confirmOrder()">Confirm</button>
+    </div>
+  </div>
 
-  function closePopup() {
-    document.getElementById("popup").style.display = "none";
-  }
-
-  function confirmOrder() {
-    const type = document.getElementById("type").value;
-    const color = document.getElementById("color").value;
-    const qty = document.getElementById("qty").value;
-    localStorage.setItem("product", type);
-    localStorage.setItem("color", color);
-    localStorage.setItem("qty", qty);
-    window.location.href = "order.html";
-  }
-</script>
-
+  <script>
+    function showPopup(){
+      const t = type.value, c = color.value, q = qty.value;
+      summary.textContent = `Product: ${t}\nColour: ${c}\nQuantity: ${q}`;
+      popup.style.display = 'flex';
+    }
+    function closePopup(){ popup.style.display='none'; }
+    function confirmOrder(){
+      localStorage.setItem('product', type.value);
+      localStorage.setItem('color', color.value);
+      localStorage.setItem('qty', qty.value);
+      location.href='order.html';
+    }
+  </script>
 </body>
 </html>
