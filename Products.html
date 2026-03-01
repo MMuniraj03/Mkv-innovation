@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Product - MKV Innovation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial, sans-serif; padding:15px; }
+    .card { border:1px solid #ddd; padding:15px; border-radius:10px; margin-bottom:15px; }
+    img { width:100%; max-width:300px; border-radius:10px; }
+    select, input { width:100%; padding:10px; margin:8px 0; }
+    .btn { background:#0a7cff; color:#fff; padding:12px; border:none; border-radius:8px; width:100%; font-size:16px; }
+    .popup {
+      display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.6); justify-content:center; align-items:center;
+    }
+    .popup-content {
+      background:#fff; padding:20px; border-radius:10px; width:90%; max-width:400px; position:relative;
+    }
+    .close { position:absolute; right:10px; top:10px; font-size:20px; cursor:pointer; }
+  </style>
+</head>
+<body>
+
+<h2>Select Your Product</h2>
+
+<div class="card">
+  <img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0">
+  <label>Product Type</label>
+  <select id="type">
+    <option>Round (O-Shape)</option>
+    <option>Elongated (Oval / V-Shape)</option>
+    <option>D-Shape</option>
+    <option>Square (Rectangular)</option>
+    <option>Other Special Shapes</option>
+  </select>
+
+  <label>Colour</label>
+  <select id="color">
+    <option>White</option>
+    <option>Black</option>
+    <option>Blue</option>
+    <option>Pink</option>
+    <option>Silver</option>
+    <option>Golden</option>
+  </select>
+
+  <label>Quantity</label>
+  <input type="number" id="qty" value="1" min="1" />
+
+  <button class="btn" onclick="showPopup()">Continue</button>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <span class="close" onclick="closePopup()">×</span>
+    <h3>Confirm Your Selection</h3>
+    <p id="summary"></p>
+    <button class="btn" onclick="confirmOrder()">Confirm</button>
+  </div>
+</div>
+
+<script>
+  function showPopup() {
+    const type = document.getElementById("type").value;
+    const color = document.getElementById("color").value;
+    const qty = document.getElementById("qty").value;
+    document.getElementById("summary").innerText =
+      `Product: ${type}\nColour: ${color}\nQuantity: ${qty}`;
+    document.getElementById("popup").style.display = "flex";
+  }
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
+
+  function confirmOrder() {
+    const type = document.getElementById("type").value;
+    const color = document.getElementById("color").value;
+    const qty = document.getElementById("qty").value;
+    localStorage.setItem("product", type);
+    localStorage.setItem("color", color);
+    localStorage.setItem("qty", qty);
+    window.location.href = "order.html";
+  }
+</script>
+
+</body>
+</html>
