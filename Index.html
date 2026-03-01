@@ -1,23 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MKV Innovation</title>
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MKV Innovation | Customised Toilet Seats</title>
   <style>
-    body { font-family: Arial, sans-serif; margin:0; padding:0; text-align:center; }
-    header { background:#111; color:#fff; padding:15px; font-size:22px; }
-    .container { padding:20px; }
-    img { width:100%; max-width:350px; border-radius:12px; margin:10px 0; }
-    .btn { background:#0a7cff; color:#fff; padding:12px 20px; border:none; border-radius:8px; font-size:16px; }
+    body { margin:0; font-family: system-ui, -apple-system, Arial, sans-serif; background:#f4f7fb; color:#111; }
+    .hero { background: linear-gradient(135deg, #0a7cff, #00c6ff); color:#fff; padding:28px 18px; text-align:center; }
+    .hero h1 { margin:0 0 8px; font-size:26px; }
+    .hero p { margin:0; opacity:.95; }
+    .container { padding:18px; max-width:900px; margin:auto; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap:12px; margin:16px 0; }
+    .card { background:#fff; border-radius:14px; padding:12px; box-shadow:0 6px 16px rgba(0,0,0,.08); }
+    .card img { width:100%; border-radius:10px; height:120px; object-fit:cover; }
+    .btn { display:block; width:100%; background:#0a7cff; color:#fff; border:none; border-radius:12px; padding:14px; font-size:16px; font-weight:600; }
+    .features { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:10px; }
+    .tag { background:#eef5ff; border-radius:999px; padding:8px 12px; display:inline-block; margin:4px 6px 0 0; font-size:12px; }
+    footer { text-align:center; color:#666; padding:18px 10px 28px; }
   </style>
 </head>
 <body>
-  <header>MKV Innovation – Customised Toilet Seats</header>
+  <section class="hero">
+    <h1>MKV Innovation</h1>
+    <p>Premium customised toilet seats – perfect fit, modern look, durable quality</p>
+    <div class="tag">Custom Colours</div>
+    <div class="tag">Perfect Fit</div>
+    <div class="tag">Hygienic</div>
+  </section>
+
   <div class="container">
-    <p>High quality customised toilet seats in multiple shapes and colours.</p>
-    <img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0" />
-    <br><br>
+    <h2>About Our Product</h2>
+    <p>
+      MKV Innovation provides high-quality customised toilet seats for modern and traditional bathrooms.
+      Choose your preferred shape and colour for a perfect fit and stylish finish. Built with durable,
+      easy-to-clean materials for long-term use.
+    </p>
+
+    <h3>Popular Shapes</h3>
+    <div class="grid">
+      <div class="card"><img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0?q=80&w=800" /><p>Round (O-Shape)</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=800" /><p>Elongated (Oval / V-Shape)</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?q=80&w=800" /><p>D-Shape</p></div>
+      <div class="card"><img src="https://images.unsplash.com/photo-1581579185169-45a1a1c9a2c0?q=80&w=800" /><p>Square</p></div>
+    </div>
+
     <a href="products.html"><button class="btn">View Products</button></a>
   </div>
+
+  <footer>© 2026 MKV Innovation</footer>
 </body>
 </html>
