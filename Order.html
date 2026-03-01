@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Place Order - MKV Innovation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: Arial; padding:20px; }
+    input, textarea { width:100%; padding:10px; margin:8px 0; }
+    .btn { background:#28a745; color:#fff; padding:12px; border:none; border-radius:8px; width:100%; font-size:16px; }
+  </style>
+</head>
+<body>
+
+<h2>Customer Details</h2>
+<p id="orderInfo"></p>
+
+<input placeholder="Full Name" required />
+<input placeholder="Mobile Number" required />
+<textarea placeholder="Address" required></textarea>
+<input placeholder="Gmail ID" required />
+
+<button class="btn" onclick="placeOrder()">Place Order</button>
+
+<script>
+  document.getElementById("orderInfo").innerText =
+    `Product: ${localStorage.getItem("product")}
+Colour: ${localStorage.getItem("color")}
+Quantity: ${localStorage.getItem("qty")}`;
+
+  function placeOrder() {
+    if (confirm("Are you sure you want to place this order?")) {
+      if (confirm("Please confirm again to proceed.")) {
+        alert("Order Confirmed! Please wait for order tracking ID");
+        setTimeout(() => {
+          window.location.href = "index.html";
+        }, 10000);
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
