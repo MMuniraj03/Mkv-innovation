@@ -1,104 +1,75 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Select Product</title>
+<title>Select Product - MKV Innovation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body{
 margin:0;
-font-family:'Orbitron',sans-serif;
-background:linear-gradient(180deg,#001f3f,#00264d,#000814);
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(to bottom,#001f3f,#002244);
 color:white;
 text-align:center;
-overflow-x:hidden;
-}
-
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(circle,rgba(255,255,255,0.15) 2px,transparent 2px);
-background-size:60px 60px;
-animation:move 25s linear infinite;
-z-index:-1;
-}
-@keyframes move{
-0%{transform:translate(0,0);}
-100%{transform:translate(-60px,-60px);}
+padding:20px;
 }
 
 select,input{
-width:80%;
 padding:12px;
-margin:12px 0;
-border-radius:12px;
+margin:10px;
+border-radius:20px;
 border:none;
-font-size:16px;
 }
 
 img{
-width:220px;
-border-radius:15px;
-transition:0.5s;
-box-shadow:0 0 20px #00bfff;
-}
-
-img:hover{
-transform:translateY(-15px) scale(1.1);
-}
-
-.btn{
-padding:14px 35px;
-margin-top:20px;
-background:linear-gradient(145deg,#c0c0c0,#e6e6e6);
-border:none;
-border-radius:40px;
-font-size:16px;
-color:#003366;
-font-weight:bold;
-cursor:pointer;
+width:250px;
+border-radius:20px;
+margin:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.6);
 transition:0.4s;
 }
 
-.btn:hover{
-transform:translateY(-8px) scale(1.05);
+img:hover{
+transform:scale(1.05);
+}
+
+button{
+padding:15px 30px;
+border:none;
+border-radius:30px;
+background:linear-gradient(to bottom,#e6e6e6,#bfbfbf);
+color:#003366;
+font-weight:bold;
+cursor:pointer;
 }
 
 .popup{
-display:none;
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-background:#00264d;
-padding:25px;
-border-radius:15px;
-box-shadow:0 0 30px silver;
-width:85%;
-}
-
-.close{
-position:absolute;
-right:15px;
-top:10px;
-cursor:pointer;
-color:white;
+background:white;
+color:#003366;
+padding:20px;
+border-radius:20px;
+display:none;
 }
 </style>
 </head>
 
 <body>
 
-<h2>Select Your Product</h2>
+<h1>Select Your Product</h1>
 
-<select id="product" onchange="changeImage()">
-<option value="round">Round</option>
-<option value="elongated">Elongated</option>
-<option value="dshape">D-Shape</option>
-<option value="square">Square</option>
+<img id="productImage" src="round.jpg">
+
+<br>
+
+<select id="type" onchange="changeImage()">
+<option value="Round">Round (O-Shape)</option>
+<option value="Elongated">Elongated</option>
+<option value="D-Shape">D-Shape</option>
+<option value="Square">Square</option>
 </select>
 
 <select id="color">
@@ -110,41 +81,49 @@ color:white;
 <option>Golden</option>
 </select>
 
-<input type="number" id="quantity" placeholder="Enter Quantity" min="1">
+<input type="number" id="quantity" min="1" value="1">
 
 <br>
-<img id="productImage" src="round.jpg">
+<button onclick="showPopup()">Next</button>
 
-<br>
-<button class="btn" onclick="showPopup()">Next Page</button>
-
-<div class="popup" id="popup">
-<span class="close" onclick="closePopup()">X</span>
+<div class="popup" id="popupBox">
 <h3>MKV say</h3>
 <p id="summary"></p>
-<img id="popupImage" width="150"><br>
-<button class="btn" onclick="confirmSelection()">Confirm Order</button>
+<button onclick="confirmOrder()">Confirm</button>
+<button onclick="closePopup()">X</button>
 </div>
 
 <script>
 function changeImage(){
-let p=document.getElementById("product").value;
-document.getElementById("productImage").src=p+".jpg";
+let type=document.getElementById("type").value;
+let img=document.getElementById("productImage");
+
+if(type=="Round") img.src="round.jpg";
+if(type=="Elongated") img.src="elongated.jpg";
+if(type=="D-Shape") img.src="dshape.jpg";
+if(type=="Square") img.src="square.jpg";
 }
+
 function showPopup(){
-let p=document.getElementById("product").value;
-let c=document.getElementById("color").value;
-let q=document.getElementById("quantity").value;
-if(q==""||q<=0){alert("Enter quantity");return;}
-document.getElementById("summary").innerHTML="Product: "+p+"<br>Color: "+c+"<br>Quantity: "+q;
-document.getElementById("popupImage").src=p+".jpg";
-document.getElementById("popup").style.display="block";
+let type=document.getElementById("type").value;
+let color=document.getElementById("color").value;
+let quantity=document.getElementById("quantity").value;
+
+document.getElementById("summary").innerHTML=
+"Product: "+type+"<br>Color: "+color+"<br>Quantity: "+quantity;
+
+document.getElementById("popupBox").style.display="block";
 }
-function closePopup(){document.getElementById("popup").style.display="none";}
-function confirmSelection(){
-localStorage.setItem("product",product.value);
-localStorage.setItem("color",color.value);
-localStorage.setItem("quantity",quantity.value);
+
+function closePopup(){
+document.getElementById("popupBox").style.display="none";
+}
+
+function confirmOrder(){
+localStorage.setItem("product",document.getElementById("type").value);
+localStorage.setItem("color",document.getElementById("color").value);
+localStorage.setItem("quantity",document.getElementById("quantity").value);
+
 window.location.href="customer.html";
 }
 </script>
