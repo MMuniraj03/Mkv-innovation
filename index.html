@@ -1,109 +1,185 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>MKV Innovation</title>
+<title>MKV Innovation - Select Product</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-
-body {
+body{
 margin:0;
-font-family:'Orbitron', sans-serif;
-background: linear-gradient(135deg,#2c003e,#000428,#004e92);
+font-family:'Orbitron',sans-serif;
+background:linear-gradient(135deg,#1a0026,#000428,#003973);
 color:white;
 text-align:center;
 }
 
-.header {
-padding:40px 20px;
-font-size:32px;
-font-weight:600;
-letter-spacing:3px;
+.header{
+padding:25px;
+font-size:26px;
 color:gold;
 text-shadow:0 0 10px gold;
 }
 
-.glass {
+.glass{
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,0.2);
 border-radius:20px;
 margin:20px;
 padding:25px;
 box-shadow:0 0 25px rgba(255,215,0,0.2);
 }
 
-.product-images {
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:20px;
-margin-top:20px;
+select,input{
+width:80%;
+padding:12px;
+margin:12px 0;
+border-radius:10px;
+border:none;
+font-size:16px;
 }
 
-.product-images img {
-width:150px;
+img{
+width:220px;
+margin-top:20px;
 border-radius:15px;
 transition:0.4s;
-box-shadow:0 0 15px rgba(255,255,255,0.3);
+box-shadow:0 0 20px rgba(255,255,255,0.3);
 }
 
-.product-images img:hover {
-transform:scale(1.1);
-box-shadow:0 0 25px gold;
+img:hover{
+transform:scale(1.05);
+box-shadow:0 0 30px gold;
 }
 
-.btn {
-margin-top:30px;
-padding:15px 35px;
+.btn{
+padding:14px 35px;
+margin-top:20px;
 background:linear-gradient(45deg,gold,#ffd700);
 border:none;
 border-radius:30px;
-font-size:18px;
 font-weight:bold;
 cursor:pointer;
-transition:0.4s;
 }
 
-.btn:hover {
-transform:scale(1.1);
-box-shadow:0 0 20px gold;
+.popup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#111;
+padding:25px;
+border-radius:15px;
+box-shadow:0 0 25px gold;
+width:85%;
+color:white;
 }
 
-.footer {
-margin-top:40px;
-padding:15px;
-font-size:14px;
-color:silver;
+.popup button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:gold;
+font-weight:bold;
 }
 
+.close{
+position:absolute;
+right:15px;
+top:10px;
+cursor:pointer;
+color:red;
+font-weight:bold;
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">MKV Innovation</div>
+<div class="header">Select Your Product</div>
 
 <div class="glass">
-<h2>Premium Customised Toilet Seats</h2>
-<p>Modern • Royal • Comfortable • Durable</p>
 
-<div class="product-images">
-<img src="square.jpg">
-<img src="dshape.jpg">
-<img src="elongated.jpg">
-<img src="round.jpg">
+<select id="product" onchange="changeImage()">
+<option value="round">Round (O-Shape)</option>
+<option value="elongated">Elongated (Oval/V-Shape)</option>
+<option value="dshape">D-Shape</option>
+<option value="square">Square</option>
+</select>
+
+<select id="color">
+<option>White</option>
+<option>Black</option>
+<option>Blue</option>
+<option>Pink</option>
+<option>Silver</option>
+<option>Golden</option>
+</select>
+
+<input type="number" id="quantity" placeholder="Enter Quantity" min="1">
+
+<br>
+<img id="productImage" src="round.jpg">
+
+<br>
+<button class="btn" onclick="showPopup()">Continue</button>
+
 </div>
 
-<button class="btn" onclick="location.href='products.html'">View Product Types</button>
-
+<div class="popup" id="popup">
+<span class="close" onclick="closePopup()">X</span>
+<h3>MKV say</h3>
+<p id="summary"></p>
+<img id="popupImage" width="150">
+<br>
+<button onclick="confirmSelection()">Confirm</button>
 </div>
 
-<div class="footer">
-© 2026 MKV Innovation | Designed for Premium Bathrooms
-</div>
+<script>
+
+function changeImage(){
+let product=document.getElementById("product").value;
+let img=document.getElementById("productImage");
+
+if(product=="round") img.src="round.jpg";
+if(product=="elongated") img.src="elongated.jpg";
+if(product=="dshape") img.src="dshape.jpg";
+if(product=="square") img.src="square.jpg";
+}
+
+function showPopup(){
+let product=document.getElementById("product").value;
+let color=document.getElementById("color").value;
+let quantity=document.getElementById("quantity").value;
+
+if(quantity=="" || quantity<=0){
+alert("Please enter quantity");
+return;
+}
+
+document.getElementById("summary").innerHTML=
+"Product: "+product+"<br>Color: "+color+"<br>Quantity: "+quantity;
+
+document.getElementById("popupImage").src=
+document.getElementById("productImage").src;
+
+document.getElementById("popup").style.display="block";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function confirmSelection(){
+localStorage.setItem("product",document.getElementById("product").value);
+localStorage.setItem("color",document.getElementById("color").value);
+localStorage.setItem("quantity",document.getElementById("quantity").value);
+window.location.href="customer.html";
+}
+
+</script>
 
 </body>
 </html>
