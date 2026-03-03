@@ -70,13 +70,34 @@ transform:translateY(-8px) scale(1.05);
 
 <script>
 function placeOrder(){
+
 if(confirm("MKV say: Confirm your order?")){
 if(confirm("MKV say: Are you sure to place order?")){
+
+let data = {
+product: localStorage.getItem("product"),
+color: localStorage.getItem("color"),
+quantity: localStorage.getItem("quantity"),
+name: document.querySelector("input[placeholder='Full Name']").value,
+mobile: document.querySelector("input[placeholder='Mobile Number']").value,
+gmail: document.querySelector("input[placeholder='Gmail ID']").value,
+address: document.querySelector("input[placeholder='Address']").value
+};
+
+fetch("https://script.google.com/macros/s/AKfycbyCA6lrcTEcm_IQFS--zQIFmAjJvX_qmgdh6cRxduHcogIrdrDPz6xEl72f8pR1KrZPOQ/exec", {
+method: "POST",
+body: JSON.stringify(data)
+})
+.then(response => response.text())
+.then(result => {
 alert("MKV say: Order Confirmed!\nWait for Order Tracking ID");
-setTimeout(function(){window.location.href="index.html";},10000);
-}}
+setTimeout(function(){
+window.location.href="index.html";
+},10000);
+})
+.catch(error => alert("Error sending order"));
+
+}
+}
 }
 </script>
-
-</body>
-</html>
