@@ -1,39 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>MKV Innovation | Customised Toilet Seats</title>
+<title>MKV Innovation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family: 'Orbitron', system-ui; background: radial-gradient(circle at top, #2b1055, #0b1020); color:#eaeaf0; }
-.hero { background: linear-gradient(135deg, #3b1d6b, #0a7cff); padding:28px 18px; text-align:center; }
-.hero h1 { margin:0 0 6px; font-size:26px; letter-spacing:1px; }
-.container { padding:18px; max-width:900px; margin:auto; }
-.grid { display:grid; grid-template-columns: repeat(2, 1fr); gap:12px; margin:16px 0; }
-.card { background: linear-gradient(145deg, #1a1f3a, #10152b); border-radius:14px; padding:12px; box-shadow:0 8px 22px rgba(0,0,0,.35); }
-.card img { width:100%; border-radius:10px; height:140px; object-fit:cover; }
-.btn { display:block; width:100%; background: linear-gradient(135deg, gold, silver, royalblue); color:#000; border:none; border-radius:12px; padding:14px; font-size:16px; font-weight:700; }
-footer { text-align:center; color:#aaa; padding:18px 10px 28px; }
+
+body {
+margin:0;
+font-family:'Orbitron', sans-serif;
+background: linear-gradient(135deg,#2c003e,#000428,#004e92);
+color:white;
+text-align:center;
+}
+
+.header {
+padding:40px 20px;
+font-size:32px;
+font-weight:600;
+letter-spacing:3px;
+color:gold;
+text-shadow:0 0 10px gold;
+}
+
+.glass {
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+border:1px solid rgba(255,255,255,0.2);
+border-radius:20px;
+margin:20px;
+padding:25px;
+box-shadow:0 0 25px rgba(255,215,0,0.2);
+}
+
+.product-images {
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+margin-top:20px;
+}
+
+.product-images img {
+width:150px;
+border-radius:15px;
+transition:0.4s;
+box-shadow:0 0 15px rgba(255,255,255,0.3);
+}
+
+.product-images img:hover {
+transform:scale(1.1);
+box-shadow:0 0 25px gold;
+}
+
+.btn {
+margin-top:30px;
+padding:15px 35px;
+background:linear-gradient(45deg,gold,#ffd700);
+border:none;
+border-radius:30px;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
+transition:0.4s;
+}
+
+.btn:hover {
+transform:scale(1.1);
+box-shadow:0 0 20px gold;
+}
+
+.footer {
+margin-top:40px;
+padding:15px;
+font-size:14px;
+color:silver;
+}
+
 </style>
 </head>
-<body>
-<section class="hero">
-  <h1>MKV Innovation</h1>
-  <p>Royal • Futuristic • Customised Toilet Seats</p>
-</section>
 
-<div class="container">
-  <h2>Product Types</h2>
-  <div class="grid">
-    <div class="card"><img src="square.jpg"><p>Square (Rectangular)</p></div>
-    <div class="card"><img src="dshape.jpg"><p>D-Shape</p></div>
-    <div class="card"><img src="elongated.jpg"><p>Elongated (Oval / V-Shape)</p></div>
-    <div class="card"><img src="round.jpg"><p>Round (O-Shape)</p></div>
-  </div>
-  <a href="products.html"><button class="btn">View Products</button></a>
+<body>
+
+<div class="header">MKV Innovation</div>
+
+<div class="glass">
+<h2>Premium Customised Toilet Seats</h2>
+<p>Modern • Royal • Comfortable • Durable</p>
+
+<div class="product-images">
+<img src="square.jpg">
+<img src="dshape.jpg">
+<img src="elongated.jpg">
+<img src="round.jpg">
 </div>
 
-<footer>© 2026 MKV Innovation</footer>
+<button class="btn" onclick="location.href='products.html'">View Product Types</button>
+
+</div>
+
+<div class="footer">
+© 2026 MKV Innovation | Designed for Premium Bathrooms
+</div>
+
 </body>
 </html>
