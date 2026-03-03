@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Customer Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:linear-gradient(180deg,#001f3f,#00264d,#000814);
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(circle,rgba(255,255,255,0.15) 2px,transparent 2px);
+background-size:60px 60px;
+animation:move 25s linear infinite;
+z-index:-1;
+}
+@keyframes move{
+0%{transform:translate(0,0);}
+100%{transform:translate(-60px,-60px);}
+}
+
+input{
+width:85%;
+padding:12px;
+margin:10px 0;
+border-radius:12px;
+border:none;
+}
+
+.btn{
+padding:14px 35px;
+margin-top:20px;
+background:linear-gradient(145deg,#c0c0c0,#e6e6e6);
+border:none;
+border-radius:40px;
+font-size:16px;
+color:#003366;
+font-weight:bold;
+cursor:pointer;
+transition:0.4s;
+}
+
+.btn:hover{
+transform:translateY(-8px) scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<h2>Customer Details</h2>
+
+<input type="text" placeholder="Full Name">
+<input type="text" placeholder="Mobile Number">
+<input type="email" placeholder="Gmail ID">
+<input type="text" placeholder="Address">
+
+<button class="btn" onclick="placeOrder()">Place Order</button>
+
+<script>
+function placeOrder(){
+if(confirm("MKV say: Confirm your order?")){
+if(confirm("MKV say: Are you sure to place order?")){
+alert("MKV say: Order Confirmed!\nWait for Order Tracking ID");
+setTimeout(function(){window.location.href="index.html";},10000);
+}}
+}
+</script>
+
+</body>
+</html>
